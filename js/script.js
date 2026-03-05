@@ -123,12 +123,11 @@ const contactForm = document.querySelector('.contact-form');
 
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
         const nom = document.getElementById('nom').value.trim();
         const telephone = document.getElementById('telephone').value.trim();
 
         if (!nom || !telephone) {
+            e.preventDefault();
             alert('Please fill in all required fields.');
             return;
         }
@@ -137,12 +136,12 @@ if (contactForm) {
         const cleanPhone = telephone.replace(/\s|-|\./g, '');
 
         if (!phoneRegex.test(cleanPhone)) {
+            e.preventDefault();
             alert('Please enter a valid Italian phone number.');
             return;
         }
 
-        alert('Thank you for your message! We will contact you soon.');
-        contactForm.reset();
+        // Form will submit via mailto
     });
 }
 
